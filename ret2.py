@@ -25,8 +25,6 @@ rows_with_missing = data[data.isin(['?']).any(axis=1)]
 
 print(rows_with_missing)
 
-
-
 data = data.replace('?', pd.NA)
 
 label_encoder = LabelEncoder()
@@ -37,6 +35,8 @@ imputer = SimpleImputer(strategy='median')
 data_imputed = imputer.fit_transform(data)
 
 data_imputed = pd.DataFrame(data_imputed, columns=column_names)
+
+print(data_imputed.head)
 
 X = data_imputed.drop('target', axis=1)
 y = data_imputed['target']
@@ -74,3 +74,4 @@ tree.plot_tree(clf,
                feature_names=X.columns, 
                class_names=class_names)
 plt.show()
+
